@@ -75,3 +75,12 @@ document.getElementById('ideaForm').addEventListener('submit', async function(ev
     }
 }
 });
+
+// Fonction pour afficher un message
+function displayMessage(message, type) {
+    var messageContainer = document.getElementById('messageContainer'); // Récupérer le conteneur de messages
+    messageContainer.innerHTML = `<p class="${type}">${message}</p>`; // Afficher le message avec le type spécifié
+    setTimeout(() => {
+        messageContainer.innerHTML = ''; // Effacer le message après 2 secondes
+    }, 2000); // Message disparaît après 2 secondes
+}
