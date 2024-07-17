@@ -90,3 +90,19 @@ function displayIdea(idea) {
     var card = createIdeaCard(idea); // Créer une carte pour l'idée
     document.getElementById('ideasCardContainer').appendChild(card); // Ajouter la carte au conteneur
 }
+
+
+// Fonction pour créer une carte d'idée
+function createIdeaCard(idea) {
+    var card = document.createElement('div'); // Créer un div pour la carte
+    card.classList.add('card'); // Ajouter la classe 'card'
+
+    var cardTitle = document.createElement('h3'); // Créer un élément h3 pour le titre
+    cardTitle.textContent = idea.libelle; // Définir le texte du titre
+
+    var cardCategory = document.createElement('p'); // Créer un élément p pour la catégorie
+    cardCategory.textContent = `Catégorie: ${idea.categorie}`; // Définir le texte de la catégorie
+
+    var cardMessage = document.createElement('p'); // Créer un élément p pour le message
+    cardMessage.textContent = idea.message; // Définir le texte du message
+    
