@@ -84,3 +84,9 @@ function displayMessage(message, type) {
         messageContainer.innerHTML = ''; // Effacer le message après 2 secondes
     }, 2000); // Message disparaît après 2 secondes
 }
+
+// Fonction pour afficher une idée
+function displayIdea(idea) {
+    var card = createIdeaCard(idea); // Créer une carte pour l'idée
+    document.getElementById('ideasCardContainer').appendChild(card); // Ajouter la carte au conteneur
+}
