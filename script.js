@@ -10,3 +10,9 @@ document.getElementById('ideaForm').addEventListener('submit', async function(ev
     var libelle = document.getElementById('libelle').value; // Récupérer la valeur du champ "libelle"
     var categorie = document.getElementById('categorie').value; // Récupérer la valeur du champ "categorie"
     var message = document.getElementById('message').value; // Récupérer la valeur du champ "message"
+
+    var isValid = true; // Initialiser la variable de validation
+    // Réinitialiser les messages d'erreur
+    document.getElementById('libelleError').textContent = ''; // Réinitialiser le message d'erreur pour "libelle"
+    document.getElementById('messageError').textContent = ''; // Réinitialiser le message d'erreur pour "message"
+    document.getElementById('messageContainer').textContent = ''; // Réinitialiser le conteneur de messages
