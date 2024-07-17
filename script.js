@@ -54,3 +54,24 @@ document.getElementById('ideaForm').addEventListener('submit', async function(ev
              message: message, // Définir le message de la nouvelle idée
              approuvee: true // Définir chaque idée comme approuvée par défaut
          };
+
+         // Ajouter la nouvelle idée à Supabase
+        let { data, error } = await supabaseClient
+        .from('idee') // Spécifier la table "idee"
+        .insert([newIdea]); // Insérer la nouvelle idée
+
+    if (error) { // Si une erreur se produit
+        displayMessage('Erreur lors de la soumission de votre idée.', 'error'); // Afficher un message d'erreur
+        console.error(error); // Afficher l'erreur dans la console
+    } else {
+        // Afficher la nouvelle idée
+        displayIdea(data[0]); // Appeler la fonction pour afficher la nouvelle idée
+
+        // Réinitialiser le formulaire
+        document.getElementById('ideaForm').reset(); // Réinitialiser le formulaire
+
+        // Afficher un message de succès
+        displayMessage('Votre idée a été soumise avec succès.', 'success'); // Afficher un message de succès
+    }
+}
+});
