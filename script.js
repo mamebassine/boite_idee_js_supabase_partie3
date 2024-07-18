@@ -105,4 +105,5 @@ function createIdeaCard(idea) {
 
     var cardMessage = document.createElement('p'); // Créer un élément p pour le message
     cardMessage.textContent = idea.message; // Définir le texte du message
-    
+    var cardActions = document.createElement('div'); // Créer un div pour les actions
+    cardActions.classList.add('card-actions'); // Ajouter la classe 'card-actions'
