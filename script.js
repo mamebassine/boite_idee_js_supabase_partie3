@@ -114,3 +114,22 @@ function createIdeaCard(idea) {
     approveButton.addEventListener('click', async () => { // Ajouter un gestionnaire d'événements pour le bouton
         idea.approuvee = !idea.approuvee; // Inverser l'état d'approbation de l'idée
         approveButton.textContent = idea.approuvee ? 'Approuver' : 'Désapprouver'; // Mettre à jour le texte du bouton
+
+        if (idea.approuvee) { // Si l'idée est approuvée
+            card.classList.add('approved'); // Ajouter la classe 'approved'
+            card.classList.remove('disapproved'); // Supprimer la classe 'disapproved'
+        } else { // Si l'idée n'est pas approuvée
+            card.classList.add('disapproved'); // Ajouter la classe 'disapproved'
+            card.classList.remove('approved'); // Supprimer la classe 'approved'
+        }
+        
+        let { error } = await supabaseClient
+            .from('idee') // Spécifier la table "idee"
+            .update({ approuvee: idea.approuvee }) // Mettre à jour l'état d'approbation de l'idée
+            .eq('id', idea.id); // Spécifier l'idée à mettre à jour
+
+        if (error) { // Si une erreur se produit
+            displayMessage('Erreur lors de la mise à jour de votre idée.', 'error'); // Afficher un message d'erreur
+            console.error(error); // Afficher l'erreur dans la console
+        }
+    });
