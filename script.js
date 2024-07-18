@@ -133,3 +133,19 @@ function createIdeaCard(idea) {
             console.error(error); // Afficher l'erreur dans la console
         }
     });
+
+    var deleteButton = document.createElement('button'); // Créer un bouton pour la suppression
+    deleteButton.textContent = 'Supprimer'; // Définir le texte du bouton
+    deleteButton.addEventListener('click', async () => { // Ajouter un gestionnaire d'événements pour le bouton
+        let { error } = await supabaseClient
+            .from('idee') // Spécifier la table "idee"
+            .delete() // Supprimer l'idée
+            .eq('id', idea.id); // Spécifier l'idée à supprimer
+
+        if (error) { // Si une erreur se produit
+            displayMessage('Erreur lors de la suppression de votre idée.', 'error'); // Afficher un message d'erreur
+            console.error(error); // Afficher l'erreur dans la console
+        } else { // Si la suppression est réussie
+            document.getElementById('ideasCardContainer').removeChild(card); // Supprimer la carte du conteneur
+        }
+    });
