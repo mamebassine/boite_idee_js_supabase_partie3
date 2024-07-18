@@ -149,3 +149,45 @@ function createIdeaCard(idea) {
             document.getElementById('ideasCardContainer').removeChild(card); // Supprimer la carte du conteneur
         }
     });
+
+    
+
+
+    
+    
+cardActions.appendChild(approveButton); // Ajouter le bouton d'approbation aux actions de la carte
+    cardActions.appendChild(deleteButton); // Ajouter le bouton de suppression aux actions de la carte
+
+    card.appendChild(cardTitle); // Ajouter le titre à la carte
+    card.appendChild(cardCategory); // Ajouter la catégorie à la carte
+    card.appendChild(cardMessage); // Ajouter le message à la carte
+    card.appendChild(cardActions); // Ajouter les actions à la carte
+
+    if (idea.approuvee) { // Si l'idée est approuvée
+        card.classList.add('approved'); // Ajouter la classe 'approved'
+    } else { // Si l'idée n'est pas approuvée
+        card.classList.add('disapproved'); // Ajouter la classe 'disapproved'
+    }
+
+    return card; // Retourner la carte
+}
+
+// Charger les idées depuis Supabase
+async function loadIdeas() {
+    let { data, error } = await supabaseClient
+        .from('idee') // Spécifier la table "idee"
+        .select('*'); // Sélectionner toutes les idées
+
+    if (error) { // Si une erreur se produit
+        displayMessage('Erreur lors du chargement des idées.', 'error'); // Afficher un message d'erreur
+        console.error(error); // Afficher l'erreur dans la console
+    } else {
+        if (data && data.length > 0) { // Si des idées sont trouvées
+            data.forEach(idea => displayIdea(idea)); // Afficher chaque idée
+        } else { // Si aucune idée n'est trouvée
+            console.log('Aucune idée trouvée.'); // Afficher un message dans la console
+        }
+    }
+}
+
+loadIdeas(); // Charger les idées au chargement de la page
