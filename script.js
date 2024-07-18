@@ -105,5 +105,12 @@ function createIdeaCard(idea) {
 
     var cardMessage = document.createElement('p'); // Créer un élément p pour le message
     cardMessage.textContent = idea.message; // Définir le texte du message
+    
     var cardActions = document.createElement('div'); // Créer un div pour les actions
     cardActions.classList.add('card-actions'); // Ajouter la classe 'card-actions'
+
+    var approveButton = document.createElement('button'); // Créer un bouton pour l'approbation
+    approveButton.textContent = idea.approuvee ? 'Approuver' : 'Désapprouver'; // Définir le texte du bouton
+    approveButton.addEventListener('click', async () => { // Ajouter un gestionnaire d'événements pour le bouton
+        idea.approuvee = !idea.approuvee; // Inverser l'état d'approbation de l'idée
+        approveButton.textContent = idea.approuvee ? 'Approuver' : 'Désapprouver'; // Mettre à jour le texte du bouton
