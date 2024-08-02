@@ -133,6 +133,8 @@ button:hover {
 .card .card-actions {
     display: flex;
     justify-content: flex-end;
+    font-size: 8px; /* Réduit la taille de la police */
+
 }
 
 .card button {
